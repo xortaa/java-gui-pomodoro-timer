@@ -110,11 +110,10 @@ public class TimerLods extends JFrame implements ActionListener{
             Boolean bool1 = (second == 0);
             Boolean bool2 = (minute == 0);
             if (bool1 && bool2) {
-                JOptionPane.showMessageDialog(null, "Time is up!");
+                JOptionPane.showMessageDialog(null, "Time's up!");
             }
             countdownTimer();
             timer.start();
         }
     }
-}
 }
