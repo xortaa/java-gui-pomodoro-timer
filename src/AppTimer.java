@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 
 import javax.swing.*;
 
-public class TimerLods extends JFrame implements ActionListener{
+public class AppTimer extends JFrame implements ActionListener{
     JLabel counterLabel;
     JPanel panel1, panel2, panel3, panelExtra1, panelExtra2;
     JButton work, rest, reset;
@@ -15,7 +15,7 @@ public class TimerLods extends JFrame implements ActionListener{
     String ddSecond, ddMinute;
     DecimalFormat dFormat = new DecimalFormat("00");
 
-    public TimerLods() {
+    public AppTimer() {
         super("Pomodoro Timer");
         setSize(800,600);
         setLayout(new GridLayout(5, 1));
@@ -63,7 +63,7 @@ public class TimerLods extends JFrame implements ActionListener{
     }
 
     public static void main(String[] args) {
-        TimerLods ct= new TimerLods();
+        AppTimer ct= new AppTimer();
         ct.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -117,4 +117,4 @@ public class TimerLods extends JFrame implements ActionListener{
         }
     }
 }
-}
+
