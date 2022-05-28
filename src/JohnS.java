@@ -21,7 +21,7 @@ public class CountdownTimer extends JFrame implements ActionListener{
 
     public CountdownTimer() {
         super("Pomodoro Timer");
-        setSize(800,600);
+        setSize(438,729);
         setLayout(new GridLayout(5, 1));
 
         panelExtra1 = new JPanel();
