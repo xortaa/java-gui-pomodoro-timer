@@ -19,7 +19,7 @@ public class JohnS extends JFrame implements ActionListener{
     boolean bool2 = false;
 
 
-    public CountdownTimer() {
+    public JohnS() {
         super("Pomodoro Timer");
         setSize(438,720);
         setLayout(new GridLayout(5, 1));
@@ -44,9 +44,9 @@ public class JohnS extends JFrame implements ActionListener{
 
         panel2 = new JPanel(new FlowLayout());
         work = new JButton("WORK");
-        work.setPreferredSize(new Dimension(300,50));
+        work.setPreferredSize(new Dimension(200,50));
         rest = new JButton("REST");
-        rest.setPreferredSize(new Dimension(300,50));
+        rest.setPreferredSize(new Dimension(200,50));
         add(panel2);
         panel2.add(work);
         panel2.add(rest);
@@ -93,6 +93,7 @@ public class JohnS extends JFrame implements ActionListener{
                 }
                 if(minute==0 && second==0) {
                     timer.stop();
+                    JOptionPane.showMessageDialog(null, "Time's up!", "error", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -100,7 +101,6 @@ public class JohnS extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
 
         if (e.getSource() == rest) {
             try {
@@ -123,35 +123,17 @@ public class JohnS extends JFrame implements ActionListener{
             try {
                 timer.stop();
                 counterLabel.setText("25:00");
-                second = 2;
-                minute = 0;
+                second = 0;
+                minute = 25;
                 countdownTimer();
                 timer.start();
-                if (second <= 0) {
-                    bool1 = true;
-                }
-                if (minute <= 0) {
-                    bool2 = true;
-                }
-                if (bool1 && bool2) {
-                    JOptionPane.showMessageDialog(null, "Time's up!", "error", JOptionPane.WARNING_MESSAGE);
-                }
             }
             catch (NullPointerException npe) {
                 counterLabel.setText("25:00");
-                second = 2;
-                minute = 0;
+                second = 0;
+                minute = 25;
                 countdownTimer();
                 timer.start();
-                if (second <= 0) {
-                    bool1 = true;
-                }
-                if (minute <= 0) {
-                    bool2 = true;
-                }
-                if (bool1 && bool2) {
-                    JOptionPane.showMessageDialog(null, "Time's up!", "error", JOptionPane.WARNING_MESSAGE);
-                }
             }
         }
         else if (e.getSource() == reset) {
@@ -164,5 +146,5 @@ public class JohnS extends JFrame implements ActionListener{
             }
         }
     }
-    //yes
+
 }
