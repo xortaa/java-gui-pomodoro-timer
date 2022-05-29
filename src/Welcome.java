@@ -18,9 +18,9 @@ public class Welcome extends JFrame {
         this.setTitle("O CLOCK");
         this.getContentPane().setBackground(Color.decode("#171515"));
 
-        ImageIcon personIcon = new ImageIcon("assets/person-icon.png");
-        JLabel iconLabel = new JLabel();
-        iconLabel.setIcon(personIcon);
+        ImageIcon person = new ImageIcon("assets/person-icon.png");
+        JLabel personIcon = new JLabel();
+        personIcon.setIcon(person);
         
 
         JLabel welcomeMessage = new JLabel("Welcome");
@@ -45,7 +45,7 @@ public class Welcome extends JFrame {
         gbc.weighty = 0.2;
         gbc.gridx = 0;
         gbc.gridy = 0;
-        this.add(iconLabel, gbc);
+        this.add(personIcon, gbc);
 
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.weighty = 0.1;
@@ -67,6 +67,8 @@ public class Welcome extends JFrame {
 
         btn.addActionListener(e ->  {
             dispose();
+            Help helpScene = new Help();
+            helpScene.setUsername(username);
         });
 
         this.setVisible(true);
