@@ -4,12 +4,10 @@ import java.awt.event.*;
 import java.awt.Color;
 import javax.swing.JPanel;
 
-import org.w3c.dom.events.MouseEvent;
+public class Signup extends JFrame implements MouseListener{
+    JLabel loginLabel;
 
-public class Login extends JFrame implements MouseListener{
-    JLabel signupLabel;
-
-    Login() {
+    Signup() {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(438, 720);
@@ -45,17 +43,17 @@ public class Login extends JFrame implements MouseListener{
         passwordField.setBackground(Color.decode("#113b54"));
         passwordField.setForeground(Color.WHITE);
         passwordField.setPreferredSize(new Dimension(338, 30));
-        // loginbtn////////////////////////
-        JButton loginBtn = new JButton("LOGIN");
-        loginBtn.setFocusable(false);
-        loginBtn.setBackground(Color.decode("#545454"));
-        loginBtn.setForeground(Color.WHITE);
-        loginBtn.setPreferredSize(new Dimension(100, 40));
+        // signupBtn////////////////////////
+        JButton signupBtn = new JButton("SIGNUP");
+        signupBtn.setFocusable(false);
+        signupBtn.setBackground(Color.decode("#545454"));
+        signupBtn.setForeground(Color.WHITE);
+        signupBtn.setPreferredSize(new Dimension(100, 40));
 
-        signupLabel = new JLabel("Don't have an account? Sign up");
-        signupLabel.setForeground(Color.WHITE);
-        signupLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-        signupLabel.addMouseListener(this);
+        loginLabel = new JLabel("Already have an account? Log In");
+        loginLabel.setForeground(Color.WHITE);
+        loginLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+        loginLabel.addMouseListener(this);
 
 
         formWrapper.setBackground(Color.decode("#171515"));
@@ -86,13 +84,13 @@ public class Login extends JFrame implements MouseListener{
         gc.anchor = GridBagConstraints.CENTER;
         gc.gridx = 0;
         gc.gridy = 4;
-        formWrapper.add(loginBtn, gc);
+        formWrapper.add(signupBtn, gc);
 
         gc.anchor = GridBagConstraints.LAST_LINE_START;
         gc.weighty = 10;
         gc.gridx = 0;
         gc.gridy = 5;
-        formWrapper.add(signupLabel, gc);
+        formWrapper.add(loginLabel, gc);
 
         JPanel container = new JPanel(new GridBagLayout());
         container.setBackground(Color.decode("#171515"));
@@ -113,43 +111,42 @@ public class Login extends JFrame implements MouseListener{
         container.add(formWrapper, c);
 
         this.add(container);
-        this.setVisible(true);
+        this.setVisible(false);
 
-        
+       
     }
-    
+
     @Override
-    public void mouseClicked(java.awt.event.MouseEvent e) {
+    public void mouseClicked(MouseEvent e) {
         // TODO Auto-generated method stub
-        if (e.getSource() == signupLabel) {
+        if (e.getSource() == loginLabel) {
             setVisible(false);
-            Signup frame = new Signup();
+            Login frame = new Login();
             frame.setVisible(true);
         }
         
-        
     }
 
     @Override
-    public void mousePressed(java.awt.event.MouseEvent e) {
+    public void mousePressed(MouseEvent e) {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void mouseReleased(java.awt.event.MouseEvent e) {
+    public void mouseReleased(MouseEvent e) {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void mouseEntered(java.awt.event.MouseEvent e) {
+    public void mouseEntered(MouseEvent e) {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void mouseExited(java.awt.event.MouseEvent e) {
+    public void mouseExited(MouseEvent e) {
         // TODO Auto-generated method stub
         
     }
