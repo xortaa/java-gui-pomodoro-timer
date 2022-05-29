@@ -128,6 +128,9 @@ public class Login extends JFrame implements MouseListener {
                 String line = br.readLine();
                 while (line != null) {
                     if (line.equals(username + "\t" + password));
+                    Welcome welcomeScene = new Welcome();
+                    welcomeScene.setUsername(username);
+                    dispose(); 
                     allow = true;
                     break;
                 }
@@ -147,9 +150,8 @@ public class Login extends JFrame implements MouseListener {
     public void mouseClicked(java.awt.event.MouseEvent e) {
         // TODO Auto-generated method stub
         if (e.getSource() == signupLabel) {
-            setVisible(false);
-            Signup frame = new Signup();
-            frame.setVisible(true);
+            dispose();
+            new Signup();
         }
 
     }

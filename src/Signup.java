@@ -132,7 +132,7 @@ public class Signup extends JFrame implements MouseListener{
         });
 
         this.add(container);
-        this.setVisible(false);
+        this.setVisible(true);
 
        
     }
@@ -141,9 +141,8 @@ public class Signup extends JFrame implements MouseListener{
     public void mouseClicked(MouseEvent e) {
         // TODO Auto-generated method stub
         if (e.getSource() == loginLabel) {
-            setVisible(false);
-            Login frame = new Login();
-            frame.setVisible(true);
+            dispose();
+            new Login();
         }
         
     }
