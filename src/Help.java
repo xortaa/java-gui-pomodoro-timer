@@ -111,28 +111,28 @@ public class Help extends JFrame implements MouseListener, KeyListener {
         faq4.setForeground(Color.WHITE);
         faqWrapper4.add(faq4);
         //
-        while (searching = false)  {
+        if (!searching) {
             faqContainer.add(faqWrapper1);
             faqContainer.add(faqWrapper2);
             faqContainer.add(faqWrapper3);
             faqContainer.add(faqWrapper4);
         }
-        
-        if (result != null) { 
-            if (Arrays.asList(result).contains("How to use the timer?")) {
+
+        if (result != null) {
+            if (Arrays.asList(result).contains(faqContent[0])) {
                 faqContainer.add(faqWrapper1);
             }
-            if (Arrays.asList(result).contains("What is the pomodoro technique?")) {
+            if (Arrays.asList(result).contains(faqContent[1])) {
                 faqContainer.add(faqWrapper2);
             }
-            if (Arrays.asList(result).contains("How to navigate back to the timer?")) {
+            if (Arrays.asList(result).contains(faqContent[2])) {
                 faqContainer.add(faqWrapper3);
             }
-            if (Arrays.asList(result).contains("About")) {
+            if (Arrays.asList(result).contains(faqContent[3])) {
                 faqContainer.add(faqWrapper4);
             }
-        };
 
+        }
 
         main.weighty = 0.1;
         main.gridx = 0;
@@ -181,6 +181,11 @@ public class Help extends JFrame implements MouseListener, KeyListener {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setSearch(boolean searching, String[] result) {
+        this.searching = searching;
+        this.result = result;
     }
 
     @Override
@@ -241,6 +246,9 @@ public class Help extends JFrame implements MouseListener, KeyListener {
 
             Stream.of(result).forEach(System.out::println);
             searching = true;
+
+            Help helpSearch = new Help();
+            helpSearch.setSearch(true, result);
         }
 
     }
