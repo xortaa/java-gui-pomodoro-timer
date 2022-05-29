@@ -3,11 +3,17 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.Color;
 import javax.swing.JPanel;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
 
-import org.w3c.dom.events.MouseEvent;
+// import org.w3c.dom.events.MouseEvent;
 
-public class Login extends JFrame implements MouseListener{
+public class Login extends JFrame implements MouseListener {
     JLabel signupLabel;
+    String username;
+    String password;
+    boolean allow = false;
 
     Login() {
 
@@ -56,7 +62,6 @@ public class Login extends JFrame implements MouseListener{
         signupLabel.setForeground(Color.WHITE);
         signupLabel.setFont(new Font("Arial", Font.PLAIN, 15));
         signupLabel.addMouseListener(this);
-
 
         formWrapper.setBackground(Color.decode("#171515"));
 
@@ -112,12 +117,32 @@ public class Login extends JFrame implements MouseListener{
         c.gridy = 1;
         container.add(formWrapper, c);
 
+        loginBtn.addActionListener(e -> {
+            try {
+                allow = false;
+                username = usernameTextField.getText().toString();
+                password = passwordField.getText().toString();
+
+                FileReader fr = new FileReader("accounts.csv");
+                BufferedReader br = new BufferedReader(fr);
+                String line = br.readLine();
+                while (line != null) {
+                    if (line.equals(username + "\t" + password));
+                    allow = true;
+                    break;
+                }
+                fr.close();
+            } catch (IOException error) {
+                error.printStackTrace();
+            }
+
+        });
+
         this.add(container);
         this.setVisible(true);
 
-        
     }
-    
+
     @Override
     public void mouseClicked(java.awt.event.MouseEvent e) {
         // TODO Auto-generated method stub
@@ -126,31 +151,30 @@ public class Login extends JFrame implements MouseListener{
             Signup frame = new Signup();
             frame.setVisible(true);
         }
-        
-        
+
     }
 
     @Override
     public void mousePressed(java.awt.event.MouseEvent e) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void mouseReleased(java.awt.event.MouseEvent e) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void mouseEntered(java.awt.event.MouseEvent e) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void mouseExited(java.awt.event.MouseEvent e) {
         // TODO Auto-generated method stub
-        
+
     }
 }

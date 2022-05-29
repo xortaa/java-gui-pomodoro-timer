@@ -3,9 +3,14 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.Color;
 import javax.swing.JPanel;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Signup extends JFrame implements MouseListener{
     JLabel loginLabel;
+    String username;
+    String password;
 
     Signup() {
 
@@ -109,6 +114,22 @@ public class Signup extends JFrame implements MouseListener{
         c.gridx = 0;
         c.gridy = 1;
         container.add(formWrapper, c);
+
+        signupBtn.addActionListener(e -> { 
+                try { 
+                    username = usernameTextField.getText().toString();
+                    password = passwordField.getText().toString();
+
+                    BufferedWriter writer = new BufferedWriter(new FileWriter("accounts.csv", true));
+                    writer.write(username + "\t" + password + "\n");
+                    writer.close();
+                    JOptionPane.showMessageDialog(null, "registration complete", "Registration", JOptionPane.INFORMATION_MESSAGE);
+
+                } catch(IOException error) {
+                    error.printStackTrace();
+                }
+           
+        });
 
         this.add(container);
         this.setVisible(false);
