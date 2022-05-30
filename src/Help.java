@@ -6,27 +6,40 @@ import javax.swing.JPanel;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.awt.List;
 
 public class Help extends JFrame implements MouseListener, KeyListener {
+    JFrame frame;
+    JPanel faqContainer;
+    JPanel faqWrapper1;
+    JPanel faqWrapper2;
+    JPanel faqWrapper3;
+    JPanel faqWrapper4;
     String username;
     JLabel timerIcon, searchIcon;
-    String search;
+    GridBagConstraints main;
+    JPanel mainContainer;
     boolean searching = false;
-    String[] result = null;
-    String[] faqContent = { "How to use the timer?", "What is the pomodoro technique?",
-            "How to navigate back to the timer?", "About" };
-    JTextField searchField;
+    String[] result = {};
+    // String[] result = null;
+    String[] faqContent = { "how to use the timer?", "what is the pomodoro technique?",
+            "how to navigate back to the timer?", "about" };
+
+    // search inits///////////////////////////////
+    JTextField serachField;
 
     Help() {
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(438, 720);
-        this.setResizable(false);
-        this.setLayout(new GridBagLayout());
-        this.setTitle("O CLOCK");
-        this.getContentPane().setBackground(Color.decode("#171515"));
+        frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(438, 720);
+        frame.setResizable(false);
+        frame.setLayout(new GridBagLayout());
+        frame.setTitle("O CLOCK");
+        frame.getContentPane().setBackground(Color.decode("#171515"));
         // aside panel ///////////////////////
         JPanel navContainer = new JPanel(new GridBagLayout());
         GridBagConstraints nav = new GridBagConstraints();
@@ -54,7 +67,7 @@ public class Help extends JFrame implements MouseListener, KeyListener {
         GridBagConstraints main = new GridBagConstraints();
         mainContainer.setBackground(Color.decode("#171515"));
         mainContainer.setBorder(BorderFactory.createMatteBorder(0, 3, 0, 0, Color.decode("#113b54")));
-
+        //////////////////////////////// WELCOME//////////////////
         JLabel welcomeUsername = new JLabel("Hi!" + " " + username);
         welcomeUsername.setFont(new Font("SansSerif", Font.PLAIN, 30));
         welcomeUsername.setForeground(Color.decode("#77adce"));
@@ -62,13 +75,9 @@ public class Help extends JFrame implements MouseListener, KeyListener {
         JLabel welcomeMessage = new JLabel("HOW CAN WE HELP?");
         welcomeMessage.setForeground(Color.WHITE);
         welcomeMessage.setFont(new Font("SansSerif", Font.PLAIN, 30));
-        searchField = new JTextField("Press enter to search...");
-        searchField.setFont(new Font("SansSerif", Font.PLAIN, 20));
-        searchField.setPreferredSize(new Dimension(320, 30));
-        searchField.setBackground(Color.decode("#545454"));
-        searchField.setForeground(Color.WHITE);
-        searchField.addKeyListener(this);
-        ;
+        /////////////////////////////////// SEARCH/////////////
+
+        ///////////////////////////////////////// FAQ///////////////////
         JLabel faq = new JLabel("FAQ");
         faq.setFont(new Font("SansSerif", Font.PLAIN, 20));
         faq.setForeground(Color.WHITE);
@@ -83,7 +92,6 @@ public class Help extends JFrame implements MouseListener, KeyListener {
         faq1.setFont(new Font("SansSerif", Font.PLAIN, 20));
         faq1.setForeground(Color.WHITE);
         faqWrapper1.add(faq1);
-        //
 
         JPanel faqWrapper2 = new JPanel(new GridLayout(1, 1, 0, 20));
         faqWrapper2.setBackground(Color.decode("#113b54"));
@@ -92,7 +100,6 @@ public class Help extends JFrame implements MouseListener, KeyListener {
         faq2.setFont(new Font("SansSerif", Font.PLAIN, 20));
         faq2.setForeground(Color.WHITE);
         faqWrapper2.add(faq2);
-        //
 
         JPanel faqWrapper3 = new JPanel(new GridLayout(1, 1, 0, 20));
         faqWrapper3.setBackground(Color.decode("#113b54"));
@@ -101,7 +108,6 @@ public class Help extends JFrame implements MouseListener, KeyListener {
         faq3.setFont(new Font("SansSerif", Font.PLAIN, 20));
         faq3.setForeground(Color.WHITE);
         faqWrapper3.add(faq3);
-        //
 
         JPanel faqWrapper4 = new JPanel(new GridLayout(1, 1, 0, 20));
         faqWrapper4.setBackground(Color.decode("#113b54"));
@@ -110,30 +116,58 @@ public class Help extends JFrame implements MouseListener, KeyListener {
         faq4.setFont(new Font("SansSerif", Font.PLAIN, 20));
         faq4.setForeground(Color.WHITE);
         faqWrapper4.add(faq4);
-        //
-        if (!searching) {
-            faqContainer.add(faqWrapper1);
-            faqContainer.add(faqWrapper2);
-            faqContainer.add(faqWrapper3);
-            faqContainer.add(faqWrapper4);
-        }
 
-        if (result != null) {
-            if (Arrays.asList(result).contains(faqContent[0])) {
-                faqContainer.add(faqWrapper1);
+        faqContainer.add(faqWrapper1);
+        faqContainer.add(faqWrapper2);
+        faqContainer.add(faqWrapper3);
+        faqContainer.add(faqWrapper4);
+
+        /////////////////////////////// SEARCH BAR////////////////////////////
+        JPanel searchContainer = new JPanel(new FlowLayout());
+        JTextField searchField = new JTextField();
+        searchField.setFont(new Font("SansSerif", Font.PLAIN, 20));
+        searchField.setPreferredSize(new Dimension(280, 30));
+        searchField.setBackground(Color.decode("#545454"));
+        searchField.setForeground(Color.WHITE);
+        JButton searchButton = new JButton();
+        ImageIcon magnifyingIcon = new ImageIcon("assets/magnifying-glass.png");
+        searchButton.setIcon(magnifyingIcon);
+        searchButton.setBackground(Color.decode("#78b0d1"));
+        searchButton.setPreferredSize(new Dimension(40, 30));
+        searchButton.addActionListener(e -> {
+            System.out.println("Hello world🐧");
+            searching = true;
+
+            String searchInput = searchField.getText();
+            String[] result = null;
+
+            result = Stream.of(faqContent).filter(str -> str.startsWith(searchInput))
+                    .collect(Collectors.toSet()).toArray(new String[0]);
+            Stream.of(result).forEach(System.out::println);
+
+            if (!Arrays.asList(result).contains(faqContent[0])) {
+                faqContainer.remove(faqWrapper1);
             }
-            if (Arrays.asList(result).contains(faqContent[1])) {
-                faqContainer.add(faqWrapper2);
+            if (!Arrays.asList(result).contains(faqContent[1])) {
+                faqContainer.remove(faqWrapper2);
             }
-            if (Arrays.asList(result).contains(faqContent[2])) {
-                faqContainer.add(faqWrapper3);
+            if (!Arrays.asList(result).contains(faqContent[2])) {
+                faqContainer.remove(faqWrapper3);
             }
-            if (Arrays.asList(result).contains(faqContent[3])) {
-                faqContainer.add(faqWrapper4);
+            if (!Arrays.asList(result).contains(faqContent[3])) {
+                faqContainer.remove(faqWrapper4);
             }
 
-        }
+            frame.revalidate();
+            frame.repaint();
 
+        });
+        searchContainer.setBackground(Color.decode("#171515"));
+        searchContainer.add(searchField);
+        searchContainer.add(searchButton);
+
+        /////////////////////////////// ADDING TO THE MAIN CONTAINER
+        /////////////////////////////// ////////////////////////
         main.weighty = 0.1;
         main.gridx = 0;
         main.gridy = 0;
@@ -147,7 +181,7 @@ public class Help extends JFrame implements MouseListener, KeyListener {
         main.weighty = 0.2;
         main.gridx = 0;
         main.gridy = 2;
-        mainContainer.add(searchField, main);
+        mainContainer.add(searchContainer, main);
 
         main.weighty = 0.1;
         main.anchor = GridBagConstraints.LINE_START;
@@ -167,34 +201,29 @@ public class Help extends JFrame implements MouseListener, KeyListener {
         gbc.weightx = 0.1;
         gbc.gridx = 0;
         gbc.gridy = 0;
-        this.add(navContainer, gbc);
+        frame.add(navContainer, gbc);
 
         gbc.weightx = 0.9;
         gbc.weighty = 1;
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.BOTH;
-        this.add(mainContainer, gbc);
+        frame.add(mainContainer, gbc);
 
-        this.setVisible(true);
+        frame.setVisible(true);
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setSearch(boolean searching, String[] result) {
-        this.searching = searching;
-        this.result = result;
-    }
-
     @Override
     public void mouseClicked(MouseEvent e) {
         // TODO Auto-generated method stub
         if (e.getSource() == timerIcon) {
-            dispose();
+            frame.dispose();
         } else if (e.getSource() == searchIcon) {
-            dispose();
+            frame.dispose();
         }
 
     }
@@ -238,18 +267,28 @@ public class Help extends JFrame implements MouseListener, KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         // TODO Auto-generated method stub
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            search = searchField.getText().toString();
+        // if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+        // search = searchField.getText().toString();
+        // String[] strings = { "adcfd", "adjnrj", "amlkc", "nfldkm", "cslkls" };
+        // String prefix = "ad";
+        // String[] result = null;
 
-            result = Stream.of(faqContent).filter(str -> str.startsWith(search)).collect(Collectors.toSet())
-                    .toArray(new String[0]);
+        // // Use String#startsWith
+        // result = Stream.of(faqContent).filter(str -> str.startsWith(search))
+        // .collect(Collectors.toSet()).toArray(new String[0]);
+        // Stream.of(result).forEach(System.out::println); // -> adjnrj adcfd
 
-            Stream.of(result).forEach(System.out::println);
-            searching = true;
+        // if (Arrays.asList(result).contains(faqContent[0])) {
+        // faqContainer.add(faqWrapper1);
+        // } else if (Arrays.asList(result).contains(faqContent[1])) {
+        // faqContainer.add(faqWrapper2);
+        // } else if (Arrays.asList(result).contains(faqContent[2])) {
+        // faqContainer.add(faqWrapper3);
+        // } else if (Arrays.asList(result).contains(faqContent[3])) {
+        // faqContainer.add(faqWrapper4);
+        // } else {
 
-            Help helpSearch = new Help();
-            helpSearch.setSearch(true, result);
-        }
+        // }
 
     }
 }
