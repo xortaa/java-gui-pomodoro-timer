@@ -167,7 +167,6 @@ public class Help extends JFrame {
         searchButton.setBackground(Color.decode("#78b0d1"));
         searchButton.setPreferredSize(new Dimension(40, 30));
         searchButton.addActionListener(e -> {
-            System.out.println("Hello world🐧");
             searching = true;
 
             String searchInput = searchField.getText();
@@ -175,7 +174,6 @@ public class Help extends JFrame {
 
             result = Stream.of(faqContent).filter(str -> str.startsWith(searchInput))
                     .collect(Collectors.toSet()).toArray(new String[0]);
-            Stream.of(result).forEach(System.out::println);
 
             if (!Arrays.asList(result).contains(faqContent[0])) {
                 faqContainer.remove(faqWrapper1);
