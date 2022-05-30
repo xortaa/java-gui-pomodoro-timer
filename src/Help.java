@@ -21,9 +21,14 @@ public class Help extends JFrame implements MouseListener {
     JPanel mainContainer;
     boolean searching = false;
     String[] result = {};
-    String[] helpContent = {};
     String[] faqContent = { "how to use the timer?", "what is the pomodoro technique?",
             "how to navigate back to the timer?", "about" };
+    String[] helpContent = { 
+            "To use the timer click the timer icon to navigate to the timer\nClick the WORK button for a 25 min countdown\nClick the REST button for a 5 min timer\nClick the RESET button to reset the timer to 0",
+            "The Pomodoro Technique is a time management method for students, perfectionists,\n and procrastinators of all kinds. Work in focused, 25-minute intervals\n with a 5min rest between.",
+            "Click the timer icon to navigate to the timer ",
+            "This app is the final project for ICS2606 Computer Programming and IT2622 Human Computer Intereaction\nGroup Members: \nKercwin Ocampo (Lead Developer)\nFranceska Flores\nJohn Ancheta"
+        };
 
     // search inits///////////////////////////////
     JTextField serachField;
@@ -90,8 +95,8 @@ public class Help extends JFrame implements MouseListener {
         faqWrapper1.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent click) {
-                JOptionPane.showMessageDialog(null, "This is some useless info", faqContent[0],
-        JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, helpContent[0], faqContent[0],
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         });
         faqWrapper1.add(faq1);
@@ -105,8 +110,8 @@ public class Help extends JFrame implements MouseListener {
         faqWrapper2.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent click) {
-                JOptionPane.showMessageDialog(null, "This is some useless info", faqContent[1],
-        JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, helpContent[1], faqContent[1],
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         });
         faqWrapper2.add(faq2);
@@ -120,12 +125,11 @@ public class Help extends JFrame implements MouseListener {
         faqWrapper3.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent click) {
-                JOptionPane.showMessageDialog(null, "This is some useless info", faqContent[2],
-        JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, helpContent[2], faqContent[2],
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         });
         faqWrapper3.add(faq3);
-
 
         JPanel faqWrapper4 = new JPanel(new GridLayout(1, 1, 0, 20));
         faqWrapper4.setBackground(Color.decode("#113b54"));
@@ -136,8 +140,8 @@ public class Help extends JFrame implements MouseListener {
         faqWrapper4.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent click) {
-                JOptionPane.showMessageDialog(null, "This is some useless info", faqContent[3],
-        JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, helpContent[3], faqContent[3],
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         });
         faqWrapper4.add(faq4);
@@ -249,8 +253,7 @@ public class Help extends JFrame implements MouseListener {
             frame.dispose();
         } else if (e.getSource() == searchIcon) {
             frame.dispose();
-        } 
-
+        }
 
     }
 
