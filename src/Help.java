@@ -11,6 +11,7 @@ public class Help extends JFrame {
     String username;
     GridBagConstraints main;
     JPanel mainContainer;
+    JLabel welcomeUsername;
     boolean searching = false;
     String[] result = {};
     String[] faqContent = { "how to use the timer?", "what is the pomodoro technique?",
@@ -41,7 +42,8 @@ public class Help extends JFrame {
         timerIcon.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent click) {
-                dispose();
+                JohnS timer = new JohnS();
+                timer.setUsername(username);
             }
         });
         timerIcon.setIcon(timer);
@@ -70,7 +72,7 @@ public class Help extends JFrame {
         mainContainer.setBackground(Color.decode("#171515"));
         mainContainer.setBorder(BorderFactory.createMatteBorder(0, 3, 0, 0, Color.decode("#113b54")));
         //////////////////////////////// WELCOME//////////////////
-        JLabel welcomeUsername = new JLabel("Hi!" + " " + username);
+        JLabel welcomeUsername = new JLabel();
         welcomeUsername.setFont(new Font("SansSerif", Font.PLAIN, 30));
         welcomeUsername.setForeground(Color.decode("#77adce"));
 
@@ -245,6 +247,8 @@ public class Help extends JFrame {
 
     public void setUsername(String username) {
         this.username = username;
+        welcomeUsername.setText("Hi!" + " " + username);
+
     }
 
 }

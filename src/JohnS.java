@@ -22,11 +22,12 @@ public class JohnS extends JFrame implements ActionListener {
     DecimalFormat dFormat = new DecimalFormat("00");
     boolean bool1 = false;
     boolean bool2 = false;
+    String username;
 
     public JohnS() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("O CLOCK");
-        this.setSize(438,720);
+        this.setSize(438, 720);
         this.setLayout(new GridBagLayout());
         this.getContentPane().setBackground(Color.decode("#171515"));
 
@@ -38,7 +39,7 @@ public class JohnS extends JFrame implements ActionListener {
         timerIcon.addMouseListener(new MouseInputAdapter() {
             @Override
             public void mousePressed(MouseEvent click) {
-                dispose();
+                
             }
         });
         timerIcon.setIcon(timer);
@@ -47,10 +48,12 @@ public class JohnS extends JFrame implements ActionListener {
         searchIcon.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent click) {
+                Help helpScene = new Help();
+                helpScene.setUsername(username);
                 dispose();
             }
         });
-        
+
         GridBagConstraints nav = new GridBagConstraints();
         nav.weighty = 0.5;
         nav.gridx = 0;
@@ -62,7 +65,6 @@ public class JohnS extends JFrame implements ActionListener {
         nav.gridy = 1;
         navContainer.add(searchIcon, nav);
 
-        
         // COUNTER PANEL///////////////
         JPanel timerContainer = new JPanel(new GridBagLayout());
         timerContainer.setBorder(BorderFactory.createMatteBorder(0, 3, 0, 0, Color.decode("#113b54")));
@@ -83,9 +85,9 @@ public class JohnS extends JFrame implements ActionListener {
         buttonWrapper = new JPanel(new FlowLayout());
         buttonWrapper.setBackground(Color.decode("#171515"));
         work = new JButton("WORK");
-        work.setPreferredSize(new Dimension(130,50));
+        work.setPreferredSize(new Dimension(130, 50));
         rest = new JButton("REST");
-        rest.setPreferredSize(new Dimension(130,50));
+        rest.setPreferredSize(new Dimension(130, 50));
         reset = new JButton("RESET");
         reset.setPreferredSize(new Dimension(130, 50));
         work.addActionListener(this);
@@ -99,15 +101,14 @@ public class JohnS extends JFrame implements ActionListener {
         buttonWrapper.add(rest);
         buttonWrapper.add(reset);
 
-
         GridBagConstraints timerConstraints = new GridBagConstraints();
-        
+
         timerConstraints.weighty = 0.1;
         timerConstraints.gridx = 0;
         timerConstraints.gridy = 0;
         timerConstraints.anchor = GridBagConstraints.CENTER;
         timerContainer.add(title, timerConstraints);
-        
+
         timerConstraints.weighty = 0.6;
         timerConstraints.weightx = 1;
         timerConstraints.gridx = 0;
@@ -115,18 +116,13 @@ public class JohnS extends JFrame implements ActionListener {
         timerConstraints.anchor = GridBagConstraints.PAGE_END;
         timerConstraints.fill = GridBagConstraints.BOTH;
         timerContainer.add(countdownWrapper, timerConstraints);
-        
+
         timerConstraints.weighty = 0.3;
         timerConstraints.gridx = 0;
         timerConstraints.gridy = 2;
         timerConstraints.fill = GridBagConstraints.BOTH;
         timerContainer.add(buttonWrapper, timerConstraints);
 
-
-        
-        
-
-        
         GridBagConstraints gbc = new GridBagConstraints();
 
         gbc.weightx = 0.1;
@@ -170,6 +166,10 @@ public class JohnS extends JFrame implements ActionListener {
                 }
             }
         });
+    }
+
+    public void setUsername(String username)  {
+        this.username = username;
     }
 
     @Override

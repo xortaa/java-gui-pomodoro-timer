@@ -67,9 +67,9 @@ public class Welcome extends JFrame {
         this.add(btn, gbc);
 
         btn.addActionListener(e ->  {
+            JohnS timer = new JohnS();
+            timer.setUsername(username);
             dispose();
-            Help helpScene = new Help();
-            helpScene.setUsername(username);
         });
 
         this.setVisible(true);
@@ -77,7 +77,6 @@ public class Welcome extends JFrame {
 
     public void setUsername(String username) {
         this.username = username;
-        System.out.println(this.username);
         welcomeUsername.setText(username + "!");
     }
 }
