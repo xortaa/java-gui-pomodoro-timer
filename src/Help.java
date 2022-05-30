@@ -3,20 +3,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.Color;
 import javax.swing.JPanel;
-import java.io.FileReader;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.awt.List;
 
-public class Help extends JFrame implements MouseListener {
-    JFrame frame;
-    JPanel faqContainer;
+public class Help extends JFrame {
     String username;
-    JLabel timerIcon, searchIcon;
     GridBagConstraints main;
     JPanel mainContainer;
     boolean searching = false;
@@ -45,12 +37,22 @@ public class Help extends JFrame implements MouseListener {
         GridBagConstraints nav = new GridBagConstraints();
         ImageIcon timer = new ImageIcon("assets/timer.png");
         ImageIcon search = new ImageIcon("assets/search.png");
-        timerIcon = new JLabel();
-        timerIcon.addMouseListener(this);
+        JLabel timerIcon = new JLabel();
+        timerIcon.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent click) {
+                dispose();
+            }
+        });
         timerIcon.setIcon(timer);
-        searchIcon = new JLabel();
+        JLabel searchIcon = new JLabel();
         searchIcon.setIcon(search);
-        searchIcon.addMouseListener(this);
+        searchIcon.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent click) {
+                dispose();
+            }
+        });
 
         nav.weighty = 0.5;
         nav.gridx = 0;
@@ -186,8 +188,8 @@ public class Help extends JFrame implements MouseListener {
                 faqContainer.remove(faqWrapper4);
             }
 
-            frame.revalidate();
-            frame.repaint();
+            revalidate();
+            repaint();
 
         });
         searchContainer.setBackground(Color.decode("#171515"));
@@ -243,41 +245,6 @@ public class Help extends JFrame implements MouseListener {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        // TODO Auto-generated method stub
-        if (e.getSource() == timerIcon) {
-            dispose();
-        } else if (e.getSource() == searchIcon) {
-            dispose();
-        }
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
-
     }
 
 }
