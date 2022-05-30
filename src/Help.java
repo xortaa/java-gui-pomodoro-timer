@@ -23,24 +23,23 @@ public class Help extends JFrame implements MouseListener {
     String[] result = {};
     String[] faqContent = { "how to use the timer?", "what is the pomodoro technique?",
             "how to navigate back to the timer?", "about" };
-    String[] helpContent = { 
+    String[] helpContent = {
             "To use the timer click the timer icon to navigate to the timer\nClick the WORK button for a 25 min countdown\nClick the REST button for a 5 min timer\nClick the RESET button to reset the timer to 0",
             "The Pomodoro Technique is a time management method for students, perfectionists,\n and procrastinators of all kinds. Work in focused, 25-minute intervals\n with a 5min rest between.",
             "Click the timer icon to navigate to the timer ",
             "This app is the final project for ICS2606 Computer Programming and IT2622 Human Computer Intereaction\nGroup Members: \nKercwin Ocampo (Lead Developer)\nFranceska Flores\nJohn Ancheta"
-        };
+    };
 
     // search inits///////////////////////////////
     JTextField serachField;
 
     Help() {
-        frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(438, 720);
-        frame.setResizable(false);
-        frame.setLayout(new GridBagLayout());
-        frame.setTitle("O CLOCK");
-        frame.getContentPane().setBackground(Color.decode("#171515"));
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(438, 720);
+        this.setResizable(false);
+        this.setLayout(new GridBagLayout());
+        this.setTitle("O CLOCK");
+        this.getContentPane().setBackground(Color.decode("#171515"));
         // aside panel ///////////////////////
         JPanel navContainer = new JPanel(new GridBagLayout());
         GridBagConstraints nav = new GridBagConstraints();
@@ -230,16 +229,16 @@ public class Help extends JFrame implements MouseListener {
         gbc.weightx = 0.1;
         gbc.gridx = 0;
         gbc.gridy = 0;
-        frame.add(navContainer, gbc);
+        this.add(navContainer, gbc);
 
         gbc.weightx = 0.9;
         gbc.weighty = 1;
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.BOTH;
-        frame.add(mainContainer, gbc);
+        this.add(mainContainer, gbc);
 
-        frame.setVisible(true);
+        this.setVisible(true);
     }
 
     public void setUsername(String username) {
@@ -250,9 +249,9 @@ public class Help extends JFrame implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         // TODO Auto-generated method stub
         if (e.getSource() == timerIcon) {
-            frame.dispose();
+            dispose();
         } else if (e.getSource() == searchIcon) {
-            frame.dispose();
+            dispose();
         }
 
     }

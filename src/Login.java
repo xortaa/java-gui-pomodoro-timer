@@ -130,6 +130,7 @@ public class Login extends JFrame implements MouseListener {
                     if (line.equals(username + "\t" + password));
                     Welcome welcomeScene = new Welcome();
                     welcomeScene.setUsername(username);
+                    System.out.println(username);
                     dispose(); 
                     allow = true;
                     break;

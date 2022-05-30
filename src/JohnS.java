@@ -67,10 +67,6 @@ public class JohnS extends JFrame implements ActionListener{
         reset.addActionListener(this);
     }
 
-    public static void main(String[] args) {
-        JohnS ct= new JohnS();
-        ct.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
 
     public void countdownTimer() {
 

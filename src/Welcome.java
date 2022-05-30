@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class Welcome extends JFrame {
     String username;
+    JLabel welcomeUsername;
 
     Welcome() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,7 +28,7 @@ public class Welcome extends JFrame {
         welcomeMessage.setFont(new Font("SansSerif", Font.PLAIN, 48));
         welcomeMessage.setForeground(Color.WHITE);
         
-        JLabel welcomeUsername = new JLabel(username + "!");
+        welcomeUsername = new JLabel();
         welcomeUsername.setFont(new Font("SansSerif", Font.PLAIN, 48));
         welcomeUsername.setForeground(Color.decode("#7ab3d4"));
         
@@ -76,5 +77,7 @@ public class Welcome extends JFrame {
 
     public void setUsername(String username) {
         this.username = username;
+        System.out.println(this.username);
+        welcomeUsername.setText(username + "!");
     }
 }
