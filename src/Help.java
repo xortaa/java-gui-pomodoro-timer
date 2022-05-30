@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.awt.List;
 
-public class Help extends JFrame implements MouseListener, KeyListener {
+public class Help extends JFrame implements MouseListener {
     JFrame frame;
     JPanel faqContainer;
     JPanel faqWrapper1;
@@ -252,43 +252,4 @@ public class Help extends JFrame implements MouseListener, KeyListener {
 
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        // TODO Auto-generated method stub
-        // if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-        // search = searchField.getText().toString();
-        // String[] strings = { "adcfd", "adjnrj", "amlkc", "nfldkm", "cslkls" };
-        // String prefix = "ad";
-        // String[] result = null;
-
-        // // Use String#startsWith
-        // result = Stream.of(faqContent).filter(str -> str.startsWith(search))
-        // .collect(Collectors.toSet()).toArray(new String[0]);
-        // Stream.of(result).forEach(System.out::println); // -> adjnrj adcfd
-
-        // if (Arrays.asList(result).contains(faqContent[0])) {
-        // faqContainer.add(faqWrapper1);
-        // } else if (Arrays.asList(result).contains(faqContent[1])) {
-        // faqContainer.add(faqWrapper2);
-        // } else if (Arrays.asList(result).contains(faqContent[2])) {
-        // faqContainer.add(faqWrapper3);
-        // } else if (Arrays.asList(result).contains(faqContent[3])) {
-        // faqContainer.add(faqWrapper4);
-        // } else {
-
-        // }
-
-    }
 }
