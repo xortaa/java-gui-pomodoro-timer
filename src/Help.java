@@ -15,17 +15,13 @@ import java.awt.List;
 public class Help extends JFrame implements MouseListener {
     JFrame frame;
     JPanel faqContainer;
-    JPanel faqWrapper1;
-    JPanel faqWrapper2;
-    JPanel faqWrapper3;
-    JPanel faqWrapper4;
     String username;
     JLabel timerIcon, searchIcon;
     GridBagConstraints main;
     JPanel mainContainer;
     boolean searching = false;
     String[] result = {};
-    // String[] result = null;
+    String[] helpContent = {};
     String[] faqContent = { "how to use the timer?", "what is the pomodoro technique?",
             "how to navigate back to the timer?", "about" };
 
@@ -91,6 +87,13 @@ public class Help extends JFrame implements MouseListener {
         JLabel faq1 = new JLabel(faqContent[0]);
         faq1.setFont(new Font("SansSerif", Font.PLAIN, 20));
         faq1.setForeground(Color.WHITE);
+        faqWrapper1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent click) {
+                JOptionPane.showMessageDialog(null, "This is some useless info", faqContent[0],
+        JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
         faqWrapper1.add(faq1);
 
         JPanel faqWrapper2 = new JPanel(new GridLayout(1, 1, 0, 20));
@@ -99,6 +102,13 @@ public class Help extends JFrame implements MouseListener {
         JLabel faq2 = new JLabel(faqContent[1]);
         faq2.setFont(new Font("SansSerif", Font.PLAIN, 20));
         faq2.setForeground(Color.WHITE);
+        faqWrapper2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent click) {
+                JOptionPane.showMessageDialog(null, "This is some useless info", faqContent[1],
+        JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
         faqWrapper2.add(faq2);
 
         JPanel faqWrapper3 = new JPanel(new GridLayout(1, 1, 0, 20));
@@ -107,7 +117,15 @@ public class Help extends JFrame implements MouseListener {
         JLabel faq3 = new JLabel(faqContent[2]);
         faq3.setFont(new Font("SansSerif", Font.PLAIN, 20));
         faq3.setForeground(Color.WHITE);
+        faqWrapper3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent click) {
+                JOptionPane.showMessageDialog(null, "This is some useless info", faqContent[2],
+        JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
         faqWrapper3.add(faq3);
+
 
         JPanel faqWrapper4 = new JPanel(new GridLayout(1, 1, 0, 20));
         faqWrapper4.setBackground(Color.decode("#113b54"));
@@ -115,6 +133,13 @@ public class Help extends JFrame implements MouseListener {
         JLabel faq4 = new JLabel(faqContent[3]);
         faq4.setFont(new Font("SansSerif", Font.PLAIN, 20));
         faq4.setForeground(Color.WHITE);
+        faqWrapper4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent click) {
+                JOptionPane.showMessageDialog(null, "This is some useless info", faqContent[3],
+        JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
         faqWrapper4.add(faq4);
 
         faqContainer.add(faqWrapper1);
@@ -224,7 +249,8 @@ public class Help extends JFrame implements MouseListener {
             frame.dispose();
         } else if (e.getSource() == searchIcon) {
             frame.dispose();
-        }
+        } 
+
 
     }
 
