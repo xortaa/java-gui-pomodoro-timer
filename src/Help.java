@@ -9,10 +9,7 @@ import java.util.stream.Stream;
 
 public class Help extends JFrame {
     String username;
-    GridBagConstraints main;
-    JPanel mainContainer;
     JLabel welcomeUsername;
-    boolean searching = false;
     String[] result = {};
     String[] faqContent = { "how to use the timer?", "what is the pomodoro technique?",
             "how to navigate back to the timer?", "about" };
@@ -22,9 +19,6 @@ public class Help extends JFrame {
             "Click the timer icon to navigate to the timer ",
             "This app is the final project for ICS2606 Computer Programming and IT2622 Human Computer Intereaction\nGroup Members: \nKercwin Ocampo (Lead Developer)\nFranceska Flores\nJohn Ancheta"
     };
-
-    // search inits///////////////////////////////
-    JTextField serachField;
 
     Help() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,6 +36,7 @@ public class Help extends JFrame {
         timerIcon.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent click) {
+                dispose();
                 JohnS timer = new JohnS();
                 timer.setUsername(username);
             }
@@ -52,7 +47,7 @@ public class Help extends JFrame {
         searchIcon.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent click) {
-                dispose();
+                
             }
         });
 
@@ -167,7 +162,6 @@ public class Help extends JFrame {
         searchButton.setBackground(Color.decode("#78b0d1"));
         searchButton.setPreferredSize(new Dimension(40, 30));
         searchButton.addActionListener(e -> {
-            searching = true;
 
             String searchInput = searchField.getText();
             String[] result = null;

@@ -7,8 +7,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Signup extends JFrame implements MouseListener{
-    JLabel loginLabel;
+public class Signup extends JFrame {
     String username;
     String password;
 
@@ -54,11 +53,17 @@ public class Signup extends JFrame implements MouseListener{
         signupBtn.setBackground(Color.decode("#545454"));
         signupBtn.setForeground(Color.WHITE);
         signupBtn.setPreferredSize(new Dimension(100, 40));
-
-        loginLabel = new JLabel("Already have an account? Log In");
+        //////login/////////////////////
+        JLabel loginLabel = new JLabel("Already have an account? Log In");
         loginLabel.setForeground(Color.WHITE);
         loginLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-        loginLabel.addMouseListener(this);
+        loginLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent click) {
+                dispose();
+                new Login();
+            }
+        });
 
 
         formWrapper.setBackground(Color.decode("#171515"));
@@ -137,37 +142,4 @@ public class Signup extends JFrame implements MouseListener{
        
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        // TODO Auto-generated method stub
-        if (e.getSource() == loginLabel) {
-            dispose();
-            new Login();
-        }
-        
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
 }

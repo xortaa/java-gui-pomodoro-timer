@@ -9,11 +9,9 @@ import java.io.IOException;
 
 // import org.w3c.dom.events.MouseEvent;
 
-public class Login extends JFrame implements MouseListener {
-    JLabel signupLabel;
+public class Login extends JFrame {
     String username;
     String password;
-    boolean allow = false;
 
     Login() {
 
@@ -57,11 +55,18 @@ public class Login extends JFrame implements MouseListener {
         loginBtn.setBackground(Color.decode("#545454"));
         loginBtn.setForeground(Color.WHITE);
         loginBtn.setPreferredSize(new Dimension(100, 40));
-
-        signupLabel = new JLabel("Don't have an account? Sign up");
+        /// signup//////////////////////
+        JLabel signupLabel = new JLabel("Don't have an account? Sign up");
         signupLabel.setForeground(Color.WHITE);
         signupLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-        signupLabel.addMouseListener(this);
+        signupLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent click) {
+                dispose();
+                new Signup();
+            }
+        });
+
 
         formWrapper.setBackground(Color.decode("#171515"));
 
@@ -119,7 +124,6 @@ public class Login extends JFrame implements MouseListener {
 
         loginBtn.addActionListener(e -> {
             try {
-                allow = false;
                 username = usernameTextField.getText().toString();
                 password = passwordField.getText().toString();
 
@@ -127,12 +131,17 @@ public class Login extends JFrame implements MouseListener {
                 BufferedReader br = new BufferedReader(fr);
                 String line = br.readLine();
                 while (line != null) {
-                    if (line.equals(username + "\t" + password));
-                    Welcome welcomeScene = new Welcome();
-                    welcomeScene.setUsername(username);
-                    dispose(); 
-                    allow = true;
-                    break;
+                    if (line.equals(username + "\t" + password)) {
+                        dispose();
+                        Welcome welcomeScene = new Welcome();
+                        welcomeScene.setUsername(username);
+                        break;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "WRONG USERNAME OR PASSWORD", "LOGIN ERROR",
+                                JOptionPane.WARNING_MESSAGE);
+                        break;
+                    }
+
                 }
                 fr.close();
             } catch (IOException error) {
@@ -146,37 +155,4 @@ public class Login extends JFrame implements MouseListener {
 
     }
 
-    @Override
-    public void mouseClicked(java.awt.event.MouseEvent e) {
-        // TODO Auto-generated method stub
-        if (e.getSource() == signupLabel) {
-            dispose();
-            new Signup();
-        }
-
-    }
-
-    @Override
-    public void mousePressed(java.awt.event.MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void mouseReleased(java.awt.event.MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void mouseEntered(java.awt.event.MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void mouseExited(java.awt.event.MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
 }

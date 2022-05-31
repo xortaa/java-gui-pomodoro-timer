@@ -28,6 +28,7 @@ public class JohnS extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("O CLOCK");
         this.setSize(438, 720);
+        this.setResizable(false);
         this.setLayout(new GridBagLayout());
         this.getContentPane().setBackground(Color.decode("#171515"));
 
@@ -48,9 +49,9 @@ public class JohnS extends JFrame implements ActionListener {
         searchIcon.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent click) {
+                dispose();
                 Help helpScene = new Help();
                 helpScene.setUsername(username);
-                dispose();
             }
         });
 

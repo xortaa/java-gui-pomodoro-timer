@@ -1,11 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.Color;
-import javax.swing.JPanel;
-import java.io.FileReader;
-import java.io.BufferedReader;
-import java.io.IOException;
+
 
 public class Welcome extends JFrame {
     String username;
