@@ -125,7 +125,7 @@ public class Signup extends JFrame {
                     username = usernameTextField.getText().toString();
                     password = passwordField.getText().toString();
 
-                    BufferedWriter writer = new BufferedWriter(new FileWriter("accounts.csv", true));
+                    BufferedWriter writer = new BufferedWriter(new FileWriter("accounts.csv"));
                     writer.write(username + "\t" + password + "\n");
                     writer.close();
                     JOptionPane.showMessageDialog(null, "registration complete", "Registration", JOptionPane.INFORMATION_MESSAGE);
