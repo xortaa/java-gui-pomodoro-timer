@@ -63,9 +63,9 @@ public class Welcome extends JFrame {
         this.add(btn, gbc);
 
         btn.addActionListener(e ->  {
+            dispose();
             JohnS timer = new JohnS();
             timer.setUsername(username);
-            dispose();
         });
 
         this.setVisible(true);

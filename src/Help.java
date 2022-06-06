@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 public class Help extends JFrame {
     String username;
-    JLabel welcomeUsername;
+    JLabel welcomeUsername = new JLabel();
     String[] result = {};
     String[] faqContent = { "how to use the timer?", "what is the pomodoro technique?",
             "how to navigate back to the timer?", "about" };
@@ -67,7 +67,6 @@ public class Help extends JFrame {
         mainContainer.setBackground(Color.decode("#171515"));
         mainContainer.setBorder(BorderFactory.createMatteBorder(0, 3, 0, 0, Color.decode("#113b54")));
         //////////////////////////////// WELCOME//////////////////
-        JLabel welcomeUsername = new JLabel();
         welcomeUsername.setFont(new Font("SansSerif", Font.PLAIN, 30));
         welcomeUsername.setForeground(Color.decode("#77adce"));
 
